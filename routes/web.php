@@ -25,21 +25,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/dashboard/operators', OperatorController::class);
-Route::resource('/dashboard/categories', CategoryController::class);
-
-
-Route::get('/dashboard-operator', [App\Http\Controllers\DashboardOperatorController::class, 'index'])->name('home');
-Route::resource('/dashboard-operator/document', DocumentController::class);
-
 /*------------------------------------------
 --------------------------------------------
 All Operator Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:operator'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/operator/home', [HomeController::class, 'index'])->name('home');
+    Route::resource('/operator/document', DocumentController::class);
 });
   
 /*------------------------------------------
@@ -49,5 +42,7 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+    Route::resource('/admin/operators', OperatorController::class);
+    Route::resource('/admin/categories', CategoryController::class);
 });
   
