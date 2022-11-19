@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OperatorController extends Controller
@@ -13,7 +14,8 @@ class OperatorController extends Controller
      */
     public function index()
     {
-        return view('dashboard.operator.index');
+        $operator = User::paginate(5);
+        return view('dashboard.operator.index',compact('operator'));
     }
 
     /**

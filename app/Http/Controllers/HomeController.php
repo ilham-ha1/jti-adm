@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,10 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard-operator.index');
+        return view('dashboard.operator.index');
     }
     public function adminHome()
     {
+       
         return view('dashboard.index');
     }
+
 }
