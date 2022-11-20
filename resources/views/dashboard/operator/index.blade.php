@@ -11,6 +11,9 @@
             </ol>
         </nav>
     </div>
+    <div class="float-right my-2">
+        <a class="btn btn-success" href="{{ route('operators.create') }}">Tambahkan User</a>
+    </div>
 
     <section class="section">
         <div class="row">
@@ -28,6 +31,7 @@
                                     <th scope="col">Type</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col">Updated At</th>
+                                    <th width="280px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,6 +42,14 @@
                                         <td>{{ $opt ->type}}</td>
                                         <td>{{ $opt ->created_at}}</td>
                                         <td>{{ $opt ->updated_at}}</td>
+                                        <td>
+                                            <form action="{{ route('operators.destroy',$opt->id) }}" method="POST">
+                                                <a data-id="edit-operators" class="btn btn-primary" href="{{ route('operators.edit',$opt->id) }}">Edit</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Constraint\Operator;
 
 class OperatorController extends Controller
 {
@@ -25,7 +27,7 @@ class OperatorController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.operator.create');
     }
 
     /**
@@ -36,7 +38,19 @@ class OperatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => ['required', 'string', 'max:255'],
+            'email'=>['required','string','email','unique:users,email,'],
+            'password'=> ['required', 'string', 'min:8'],
+            'type' =>['required','int']
+        ];
+
+        $data = $request->validate($rules);
+        $data['password']= Hash::make($data['password']);
+        User::create($data);
+
+        return redirect()->route('operators.index');
+    
     }
 
     /**
@@ -56,9 +70,10 @@ class OperatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id)
     {
-        //
+        $operator = User::where('id', $id)->first();
+        return view('dashboard.operator.edit', compact('operator'));
     }
 
     /**
@@ -70,7 +85,18 @@ class OperatorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => ['required', 'string', 'max:255'],
+            'email'=>['required','string','email'],
+            'password'=> ['required', 'string', 'min:8'],
+            'type' =>['required','int']
+        ];
+
+        $data = $request->validate($rules);
+        $data['password']= Hash::make($data['password']);
+        User::where('id', $id)->update($data);
+
+        return redirect()->route('operators.index');
     }
 
     /**
@@ -81,6 +107,8 @@ class OperatorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $operator = User::find($id);
+        $operator->delete();
+        return redirect()->route('operators.index');
     }
 }
