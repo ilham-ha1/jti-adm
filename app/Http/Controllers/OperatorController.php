@@ -14,8 +14,8 @@ class OperatorController extends Controller
      */
     public function index()
     {
-        $operator = User::paginate(5);
-        return view('dashboard.operator.index',compact('operator'));
+        $operator = User::all();
+        return view('dashboard.operator.index', compact('operator'));
     }
 
     /**

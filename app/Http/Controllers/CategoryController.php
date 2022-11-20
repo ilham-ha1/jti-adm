@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::paginate(5);
-        return view('dashboard.category.index',compact('kategori'));
+        $kategori = Kategori::all();
+        return view('dashboard.category.index', compact('kategori'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.category.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'nama_kategori' => ['required', 'string', 'max:255'],
+        ];
+
+        $data = $request->validate($rules);
+        
+        Kategori::create($data);
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -56,10 +64,6 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -70,7 +74,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            $rules = [
+                'nama_kategori' => ['required', 'string', 'max:255'],
+            ];
+    
+            $data = $request->validate($rules);
+            
+            Kategori::where('id', $id)->update($data);
+    
+            return redirect()->route('categories.index');
     }
 
     /**
@@ -79,8 +91,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function edit($id)
+    {
+        $kategori = Kategori::where('id', $id)->first();
+        return view('dashboard.category.edit', compact('kategori'));
+    }
+
     public function destroy($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+        return redirect()->route('categories.index');
     }
 }

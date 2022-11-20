@@ -11,7 +11,9 @@
             </ol>
         </nav>
     </div>
-
+    <div class="float-right my-2">
+        <a class="btn btn-success" href="{{ route('categories.create') }}">Tambahkan Kategori</a>
+    </div>
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -26,6 +28,7 @@
                                     <th scope="col">Nama Kategori</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col">Updated At</th>
+                                    <th width="280px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +37,14 @@
                                         <td>{{ $ktg ->nama_kategori}}</td>
                                         <td>{{ $ktg ->created_at}}</td>
                                         <td>{{ $ktg ->updated_at}}</td>
+                                        <td>
+                                            <form action="{{ route('categories.destroy',$ktg->id) }}" method="POST">
+                                                <a data-id="edit-categories" class="btn btn-primary" href="{{ route('categories.edit',$ktg->id) }}">Edit</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

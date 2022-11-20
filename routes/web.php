@@ -42,7 +42,7 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
-    Route::resource('/admin/operators', OperatorController::class);
-    Route::resource('/admin/categories', CategoryController::class);
+    Route::resource('admin/operators', OperatorController::class);
+    Route::resource('admin/categories', CategoryController::class);
+    Route::resource('admin/categories/{id}', CategoryController::class);
 });
-  
