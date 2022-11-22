@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'nama_kategori' => ['required', 'string', 'max:255'],
+            'nama_kategori' => ['required', 'string', 'max:255','unique:kategori,nama_kategori'],
         ];
 
         $data = $request->validate($rules);

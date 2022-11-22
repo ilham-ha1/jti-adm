@@ -47,11 +47,11 @@
                             <label for="name" class="form-label">
                                 Nama User*
                             </label>
-                            <input type="name" class="form-control" id="name" name="name">
+                            <input type="name" class="form-control" id="name" name="name"  value="{{ old('name') }}">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control" id="email" name="email"  value="{{ old('email') }}">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="type" class="form-label">Choose Type</label><br>
-                            <select name="type" class="form-check">
+                            <select name="type" id="type" class="form-check">
                                 <option value="0">operator</option>
                                <option value="1">admin</option>
                             </select>

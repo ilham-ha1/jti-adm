@@ -16,7 +16,7 @@
         <a class="btn btn-success" href="{{ route('categories.create') }}">Tambahkan Kategori</a>
     </div>
 
-    <form class="search-form" action="{{ route('search') }}" method="GET">
+    <form class="search-form" action="{{ route('searchs') }}" method="GET">
         <input type="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
     </form> 
 
@@ -56,12 +56,14 @@
                             </tbody>
                         </table>
                         <!-- End Table with hoverable rows -->
-                       
+                        <div class="pagination">
+                            {{ $kategori->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{ $kategori->links()}}
+        
     </section>
 
 </main><!-- End #main -->

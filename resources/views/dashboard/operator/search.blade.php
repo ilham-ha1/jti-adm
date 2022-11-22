@@ -11,13 +11,10 @@
             </ol>
         </nav>
     </div>
-    <div class="float-right my-2">
-        <a class="btn btn-success" href="{{ route('operators.create') }}">Tambahkan User</a>
-    </div>
+    <a class="btn btn-success mt-3" style="margin-left: 10px;" href="{{ route('operators.index') }}">Back</a>
     <form class="search-form" action="{{ route('opt-search') }}" method="GET">
         <input type="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
     </form> 
-
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -58,9 +55,6 @@
                             </tbody>
                         </table>
                         <!-- End Table with hoverable rows -->
-                        <div class="pagination">
-                            {{ $operator->links() }}
-                        </div>
                     </div>
                 </div>
             </div>

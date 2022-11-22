@@ -16,8 +16,17 @@ class OperatorController extends Controller
      */
     public function index()
     {
-        $operator = User::all();
+        $operator = User::paginate(5);
         return view('dashboard.operator.index', compact('operator'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $operator = User::query()
+            ->where('Name', 'LIKE', "%{$search}%")
+            ->get();
+        return view('dashboard.operator.search', compact('operator'));
     }
 
     /**

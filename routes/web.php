@@ -44,7 +44,8 @@ All Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('admin/operators', OperatorController::class);
-    Route::get('/search/', 'CategoryController@search')->name('search');
+    Route::get('/search/', 'OperatorController@search')->name('opt-search');
+    Route::get('/searchs/', 'CategoryController@search')->name('searchs');
     Route::resource('admin/categories', CategoryController::class);
     
 

@@ -11,9 +11,11 @@
             </ol>
         </nav>
     </div>
-    
-    <a class="btn btn-success mt-3" style="margin-left: 10px;" href="{{ route('categories.index') }}">Back</a>
 
+    <a class="btn btn-success mt-3" style="margin-left: 10px;" href="{{ route('categories.index') }}">Back</a>
+    <form class="search-form" action="{{ route('searchs') }}" method="GET">
+        <input type="search" id="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
+    </form>
     <section class="section">
         <div class="row">
             <div class="col-lg-12">

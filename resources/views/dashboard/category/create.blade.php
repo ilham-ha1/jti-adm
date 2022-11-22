@@ -22,7 +22,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama Kategori</label>
-                            <input type="name" class="form-control" id="nama_kategori" name="nama_kategori">
+                            <input type="name" class="form-control" id="nama_kategori" name="nama_kategori" autofocus value="{{ old('nama_kategori') }}">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="reset" class="btn btn-warning">Reset</button>
