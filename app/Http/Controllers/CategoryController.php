@@ -14,8 +14,17 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::paginate(5);
         return view('dashboard.category.index', compact('kategori'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $kategori = Kategori::query()
+            ->where('nama_kategori', 'LIKE', "%{$search}%")
+            ->get();
+        return view('dashboard.category.search', compact('kategori'));
     }
 
     /**
@@ -104,4 +113,6 @@ class CategoryController extends Controller
         $kategori->delete();
         return redirect()->route('categories.index');
     }
+
+    
 }

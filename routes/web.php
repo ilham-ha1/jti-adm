@@ -8,6 +8,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\DashboardOperatorController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,9 @@ All Admin Routes List
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::resource('admin/operators', OperatorController::class);
+    Route::get('/search/', 'CategoryController@search')->name('search');
     Route::resource('admin/categories', CategoryController::class);
-    Route::resource('admin/categories/{id}', CategoryController::class);
+    
+
+
 });

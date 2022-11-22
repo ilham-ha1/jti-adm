@@ -11,14 +11,8 @@
             </ol>
         </nav>
     </div>
-
-    <div class="float-right my-2">
-        <a class="btn btn-success" href="{{ route('categories.create') }}">Tambahkan Kategori</a>
-    </div>
-
-    <form class="search-form" action="{{ route('search') }}" method="GET">
-        <input type="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
-    </form> 
+    
+    <a class="btn btn-success mt-3" style="margin-left: 10px;" href="{{ route('categories.index') }}">Back</a>
 
     <section class="section">
         <div class="row">
@@ -56,12 +50,9 @@
                             </tbody>
                         </table>
                         <!-- End Table with hoverable rows -->
-                       
                     </div>
                 </div>
             </div>
         </div>
-        {{ $kategori->links()}}
     </section>
-
 </main><!-- End #main -->
