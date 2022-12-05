@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
@@ -13,7 +16,9 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        return view('dashboard-operator.document.index');
+        $dokumen = Dokumen::latest()->filter(request(['search', 'kategori']))->paginate('20');
+        $kategori = Kategori::all();
+        return view('dashboard-operator.document.index', compact('dokumen', 'kategori'));
     }
 
     /**
@@ -23,7 +28,8 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = Kategori::all();
+        return view('dashboard-operator.document.create', compact('kategori'));
     }
 
     /**
@@ -33,8 +39,26 @@ class DocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {  
+        $validateData = $request ->validate([
+            'kategori_id' => 'required',
+            'kode' => 'required|string|max:255',
+            'nomor_surat' => ['required', 'string', 'max:255'],
+            'nim' => ['required', 'string', 'max:255'],
+            'nama' => ['required', 'string'],
+            'lulus' => ['required', 'integer'],
+            'oerdner',
+            'map',
+            'file',
+        ]);
+
+        if ($request->file('file')) {
+            $validateData['file'] = $request->file('file')->store('Dokumen');
+        }
+
+        Dokumen::create($validateData);
+
+        return redirect()->route('document.index');
     }
 
     /**
@@ -45,7 +69,8 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        //
+        $dokumen = Dokumen::latest()->find($id);        
+        return view('dashboard-operator.document.show', compact('dokumen'));
     }
 
     /**
@@ -56,7 +81,9 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dokumen = Dokumen::latest()->find($id);
+        $kategori = Kategori::all();
+        return view('dashboard-operator.document.edit', compact('dokumen', 'kategori'));
     }
 
     /**
@@ -68,7 +95,30 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'kategori_id' => 'required',
+            'kode' => 'required|string|max:255',
+            'nomor_surat' => ['required', 'string', 'max:255'],
+            'nim' => ['required', 'string', 'max:255'],
+            'nama' => ['required', 'string'],
+            'lulus' => ['required', 'integer'],
+            'oerdner',
+            'map',
+            'file',
+        ];
+
+        $validateData = $request->validate($rules);
+
+        if ($request->file('file')) {
+            if ($request->oldFile) {
+                Storage::delete($request->oldFile);
+            }
+            $validateData['file'] = $request->file('file')->store('Dokumen');
+        }
+        
+        Dokumen::where('id', $id)
+            ->update($validateData);
+            return redirect()->route('document.index');
     }
 
     /**
@@ -79,6 +129,8 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dokumen = Dokumen::find($id);
+        $dokumen->delete();
+        return redirect()->route('document.index');
     }
 }

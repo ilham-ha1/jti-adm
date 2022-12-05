@@ -15,14 +15,16 @@ return new class extends Migration
     {
         Schema::create('dokumen', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->foreignId('kategori_id');
             $table->string('kode')->unique();
             $table->date('tanggal')->nullable();
-            $table->string('nomor surat')->nullable();
+            $table->string('nomor_surat')->nullable();
             $table->string('nim');
             $table->string('nama');
             $table->string('lulus')->nullable();
             $table->string('oerdner')->nullable();
             $table->string('map')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
 
         });

@@ -3,7 +3,7 @@
 <main id="main" class="main">
     <div class="container mt-5">
         <div class="row justify-content-center mb-3">
-            <div class="card col-lg-6">
+            <div class="card col-lg-12">
                 <div class="card-title text-center mt-4">
                     <h5>Tambahkan Kategori Baru</h5>
                 </div>

@@ -47,7 +47,4 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/search/', 'OperatorController@search')->name('opt-search');
     Route::get('/searchs/', 'CategoryController@search')->name('searchs');
     Route::resource('admin/categories', CategoryController::class);
-    
-
-
 });
