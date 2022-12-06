@@ -17,6 +17,7 @@
                             @endforeach
                         </ul>
                     </div>
+               
                     @endif
                     <form method="post" action="{{ route('categories.store') }}" id="myForm" enctype="multipart/form-data">
                         @csrf
@@ -26,7 +27,12 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="reset" class="btn btn-warning">Reset</button>
+                        <a class="btn btn-success"  href="{{ route('categories.index') }}">Back</a>
                     </form>
+    
+                    
+             
+                    
                 </div>
             </div>
         </div>

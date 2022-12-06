@@ -12,10 +12,16 @@
         </nav>
     </div>
 
-    <a class="btn btn-success mt-3" style="margin-left: 10px;" href="{{ route('categories.index') }}">Back</a>
+   
     <form class="search-form" action="{{ route('searchs') }}" method="GET">
-        <input type="search" id="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
+        <div class="input-group">
+            <input type="search" id="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
+            <button type="submit" class="input-group-text bg-transparent text primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
     </form>
+    <a class="btn btn-success mt-3" style="margin-left: 10px;" href="{{ route('categories.index') }}">Back</a>
     <section class="section">
         <div class="row">
             <div class="col-lg-12">

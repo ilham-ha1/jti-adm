@@ -17,7 +17,12 @@
     </div>
 
     <form class="search-form" action="{{ route('searchs') }}" method="GET">
-        <input type="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
+        <div class="input-group">
+            <input type="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
+            <button type="submit" class="input-group-text bg-transparent text primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
     </form> 
 
     <section class="section">
