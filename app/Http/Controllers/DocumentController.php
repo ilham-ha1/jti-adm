@@ -39,7 +39,7 @@ class DocumentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
         $validateData = $request ->validate([
             'kategori_id' => 'required',
             'kode' => 'required|string|max:255',
@@ -53,7 +53,8 @@ class DocumentController extends Controller
         ]);
 
         if ($request->file('file')) {
-            $validateData['file'] = $request->file('file')->store('Dokumen');
+            $filename = $request->file('file')->getClientOriginalName();
+            $validateData['file'] = $request->file('file')->storeAs('Dokumen', $filename.'.pdf');
         }
 
         Dokumen::create($validateData);
@@ -69,7 +70,7 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        $dokumen = Dokumen::latest()->find($id);        
+        $dokumen = Dokumen::latest()->find($id);
         return view('dashboard-operator.document.show', compact('dokumen'));
     }
 
@@ -113,12 +114,13 @@ class DocumentController extends Controller
             if ($request->oldFile) {
                 Storage::delete($request->oldFile);
             }
-            $validateData['file'] = $request->file('file')->store('Dokumen');
+            $nim = $request->nim;
+            $validateData['file'] = $request->file('file')->storeAs('Dokumen', $nim.'.pdf');
         }
         
         Dokumen::where('id', $id)
             ->update($validateData);
-            return redirect()->route('document.index');
+        return redirect()->route('document.index');
     }
 
     /**
@@ -130,7 +132,10 @@ class DocumentController extends Controller
     public function destroy($id)
     {
         $dokumen = Dokumen::find($id);
-        $dokumen->delete();
+        if ($dokumen->file) {
+            Storage::delete($dokumen->file);
+        }
+        Dokumen::destroy($dokumen->id);
         return redirect()->route('document.index');
     }
 }
