@@ -87,12 +87,12 @@
                                     <td>
                                         <form action="{{ route('document.destroy',$dok->id) }}" method="POST">
                                             <a class="btn btn-warning"
-                                                href="{{ route('document.show',$dok->id) }}">Show</a>
+                                                href="{{ route('document.show',$dok->id) }}">Tampilkan</a>
                                             <a class="btn btn-primary"
-                                                href="{{ route('document.edit',$dok->id) }}">Edit</a>
+                                                href="{{ route('document.edit',$dok->id) }}">Ubah</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
