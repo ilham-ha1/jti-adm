@@ -18,7 +18,7 @@
 
     <li class="nav-item">
         <a class="nav-link {{ Request::is('admin/categories*') ? '' : 'collapsed' }} mb-3" href="{{ '/admin/categories' }}">
-            <i class="bi bi-layout-text-window-reverse"></i><span>Category</span></i>
+            <i class="bi bi-layout-text-window-reverse"></i><span>Kategori</span></i>
         </a>
     </li>
     

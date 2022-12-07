@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @if ($errors->any())
                     <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <strong>Eror!</strong> Tolong cek kembali data yang dimasukkan!<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -22,7 +22,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">
-                                Nama User*
+                                Nama
                             </label>
                             <input type="name" class="form-control" id="name" name="name" autofocus  value="{{ old('name') }}">
                         </div>
@@ -35,18 +35,15 @@
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="mb-3">
-                            <label for="type" class="form-label">Choose Type</label><br>
-                            <select name="type" class="form-check" >
-                                <option value="0">operator</option>
-                               <option value="1">admin</option>
+                            <label for="type" class="form-label">Tipe</label><br>
+                            <select name="type" class="form-select"  >
+                               <option value="0">Operator</option>
+                               <option value="1">Admin</option>
                             </select>
                         </div>
-                        <div>
-                            *<b>Aturan penamaan:</b> Admin/Operator nama <br>
-                            <b>Contoh:</b> Operator Riski
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
                         <button type="reset" class="btn btn-warning">Reset</button>
+                        <a class="btn btn-success"  href="{{ route('operators.index') }}">Kembali</a>
                     </form>
                 </div>
             </div>

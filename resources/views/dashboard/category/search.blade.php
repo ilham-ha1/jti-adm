@@ -15,28 +15,28 @@
    
     <form class="search-form" action="{{ route('searchs') }}" method="GET">
         <div class="input-group">
-            <input type="search" id="search" name="search" class="form-control" placeholder="Search Here" title="Search here">
+            <input type="search" id="search" name="search" class="form-control" placeholder="Cari disini" title="Search here">
             <button type="submit" class="input-group-text bg-transparent text primary">
                 <i class="bi bi-search"></i>
             </button>
         </div>
     </form>
-    <a class="btn btn-success mt-3" style="margin-left: 10px;" href="{{ route('categories.index') }}">Back</a>
+    <a class="btn btn-success" href="{{ route('categories.index') }}">Kembali</a>
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Category Table</h5>
+                        <h5 class="card-title">Table Kategori</h5>
 
                         <!-- Table with hoverable rows -->
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Nama Kategori</th>
-                                    <th scope="col">Created At</th>
-                                    <th scope="col">Updated At</th>
-                                    <th width="280px">Action</th>
+                                    <th scope="col">Tanggal Dibuat</th>
+                                    <th scope="col">Tanggal Dirubah</th>
+                                    <th width="280px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,7 +50,7 @@
                                                 <a data-id="edit-categories" class="btn btn-primary" href="{{ route('categories.edit',$ktg->id) }}">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>

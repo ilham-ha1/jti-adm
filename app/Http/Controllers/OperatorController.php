@@ -55,6 +55,13 @@ class OperatorController extends Controller
         ];
 
         $data = $request->validate($rules);
+
+        if ($request->type == 0) {
+            $data['name'] = 'Operator '. $data['name'];
+        } else {
+            $data['name'] = 'Admin '. $data['name'];
+        }
+
         $data['password']= Hash::make($data['password']);
         User::create($data);
 
@@ -102,6 +109,13 @@ class OperatorController extends Controller
         ];
 
         $data = $request->validate($rules);
+
+        if ($request->type == 0) {
+            $data['name'] = 'Operator '. $data['name'];
+        } else {
+            $data['name'] = 'Admin '. $data['name'];
+        }
+        
         $data['password']= Hash::make($data['password']);
         User::where('id', $id)->update($data);
 

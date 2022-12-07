@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @if ($errors->any())
                     <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <strong>Eror!</strong> Tolong cek kembali data yang dimasukkan!<br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -25,9 +25,9 @@
                             <label for="name" class="form-label">Nama Kategori</label>
                             <input type="name" class="form-control" id="nama_kategori" name="nama_kategori" autofocus value="{{ old('nama_kategori') }}">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
                         <button type="reset" class="btn btn-warning">Reset</button>
-                        <a class="btn btn-success"  href="{{ route('categories.index') }}">Back</a>
+                        <a class="btn btn-success"  href="{{ route('categories.index') }}">Kembali</a>
                     </form>
     
                     
