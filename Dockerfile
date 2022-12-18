@@ -15,12 +15,6 @@ RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar 
 RUN cd /app && \
     /usr/local/bin/composer install --ignore-platform-req=ext-gd
 
-RUN cd /app && \
-    /usr/local/bin/npm install
-
-RUN cd /app && \
-    /usr/local/bin/npm run build
-
 RUN chown -R www-data: /app
 
 CMD sh /app/docker/startup.sh
