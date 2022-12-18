@@ -15,8 +15,6 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <script src="/resources/js/app.js"></script>
-    <script src="/resources/js/app.scss"></script>
 
     <style>
     .divider:after,
