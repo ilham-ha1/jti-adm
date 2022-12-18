@@ -48,3 +48,16 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/searchs/', 'CategoryController@search')->name('searchs');
     Route::resource('admin/categories', CategoryController::class);
 });
+
+Route::get('/mig', function()
+{
+    // Call and Artisan command from within your application.
+    Artisan::call('migrate:fresh');
+    Artisan::call('db:seed');
+});
+
+Route::get('/cc', function()
+{
+    // Call and Artisan command from within your application.
+    Artisan::call('config:clear');
+});
