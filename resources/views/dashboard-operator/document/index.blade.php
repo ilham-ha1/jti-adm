@@ -3,7 +3,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>General Tables</h1>
+        <h1>Tabel Dokumen</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ '/operator/home' }}">Dashboard</a></li>
@@ -15,11 +15,9 @@
     <div class="row">
         <div class="col-lg-6">
             <form action="/operator/document">
-                @if(request('kategori'))
-                <input type="hidden" name="kategori" value="{{ request('kategori') }}">
-                @endif
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for document" name="search">
+                    <input type="text" class="form-control" placeholder="Cari Dokumen Berdasarkan NIM dan Nama"
+                        name="search">
                     <button type="submit" class="input-group-text bg-transparent text primary">
                         <i class="bi bi-search"></i>
                     </button>
@@ -27,10 +25,7 @@
             </form>
         </div>
 
-        <div class="col-lg-6">
-            @if(request('search'))
-            <input type="hidden" name="search" value="{{ request('search') }}">
-            @endif
+        <div class="col-lg-6"> 
             <select class="form-control" placeholder="Filter Data Berdasarkan Kategori"
                 onchange="location = this.value;">
                 <option value="">Filter Data Berdasarkan Kategori</option>
@@ -45,13 +40,14 @@
         </div>
     </div>
 
+    <hr>
 
     <div class="float-right my-2">
         @if(request('kategori') OR request('search'))
-        <a class="btn btn-success mb-2" href="{{ route('document.create') }}">Tambahkan Dokumen</a>
-        <a class="btn btn-secondary mb-2" href="{{ route('document.index') }}">Kembali</a>
+        <a class="btn btn-success mb-1" href="{{ route('document.create') }}">Tambahkan Dokumen</a>
+        <a class="btn btn-secondary mb-1" href="{{ route('document.index') }}">Kembali</a>
         @else
-        <a class="btn btn-success mb-2" href="{{ route('document.create') }}">Tambahkan Dokumen</a>
+        <a class="btn btn-success mb-1" href="{{ route('document.create') }}">Tambahkan Dokumen</a>
         @endif
     </div>
 
@@ -60,7 +56,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Documents Table</h5>
+                        <h5 class="card-title">Tabel Dokumen</h5>
 
                         <!-- Table with hoverable rows -->
                         <table class="table table-hover">
