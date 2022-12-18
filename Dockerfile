@@ -17,5 +17,4 @@ RUN cd /app && \
 
 RUN chown -R www-data: /app
 
-EXPOSE 8080
-CMD ["sh /app/docker/startup.sh", "php artisan key:generate","npm run build", "php artisan serve"]
+CMD sh /app/docker/startup.sh
