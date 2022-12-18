@@ -19,4 +19,4 @@ RUN chown -R www-data: /app
 
 RUN npm run dev
 
-CMD sh /app/docker/startup.sh
+CMD ["sh /app/docker/startup.sh", "npm run dev"]
